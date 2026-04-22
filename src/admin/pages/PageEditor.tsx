@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Loader2, Save, Send, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import { logAudit } from "../lib/audit";
+import { ImageField } from "../components/ImageField";
 
 interface Section { id: string; slug: string; title: string; sort_order: number; }
 interface Field {
@@ -117,6 +118,11 @@ const PageEditor = () => {
                   </div>
                   {f.field_type === "textarea" || f.field_type === "richtext" ? (
                     <Textarea rows={3} value={drafts[f.id] ?? ""} onChange={(e) => setDrafts({ ...drafts, [f.id]: e.target.value })} />
+                  ) : f.field_type === "image" ? (
+                    <ImageField
+                      value={drafts[f.id] ?? ""}
+                      onChange={(url) => setDrafts({ ...drafts, [f.id]: url })}
+                    />
                   ) : (
                     <Input value={drafts[f.id] ?? ""} onChange={(e) => setDrafts({ ...drafts, [f.id]: e.target.value })} />
                   )}

@@ -12,7 +12,7 @@ export interface ContactInfo {
 const defaults: ContactInfo = {
   whatsapp_primary: { label: "Joel", number: "0712251765" },
   whatsapp_secondary: { label: "Rashid", number: "0791667175" },
-  email: fallback.email,
+  email: "kenziposh@yahoo.com",
   location: fallback.location,
 };
 
