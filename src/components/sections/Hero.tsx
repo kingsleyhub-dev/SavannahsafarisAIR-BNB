@@ -7,7 +7,7 @@ export const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
     <div className="absolute inset-0">
       <img src={images.hero} alt="Luxury Nairobi apartment with city view" className="w-full h-full object-cover animate-ken-burns" />
-      <div className="absolute inset-0 gradient-hero" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
     </div>
 
     <div className="relative container-luxe pt-32 pb-20 text-primary-foreground">
