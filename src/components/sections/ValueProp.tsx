@@ -1,0 +1,46 @@
+import { images } from "@/data/site";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+export const ValueProp = () => (
+  <section className="section-padding">
+    <div className="container-luxe grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative animate-fade-up">
+        <div className="absolute -top-6 -left-6 size-32 rounded-full gradient-gold blur-3xl opacity-30" />
+        <img src={images.living} alt="Elegant lounge" className="relative rounded-2xl shadow-elegant w-full aspect-[4/5] object-cover" loading="lazy" />
+        <div className="absolute -bottom-8 -right-8 hidden md:block bg-card rounded-2xl shadow-elegant p-6 max-w-xs border border-border">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="size-10 rounded-full gradient-forest" />
+            <div>
+              <p className="text-sm font-semibold">Superhost</p>
+              <p className="text-xs text-muted-foreground">5 years hosting</p>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground">"Hospitality crafted around you. Every detail considered."</p>
+        </div>
+      </div>
+
+      <div className="space-y-6 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+        <span className="eyebrow">— About the property</span>
+        <h2 className="font-display text-4xl sm:text-5xl font-bold leading-tight text-balance">
+          A boutique escape where <span className="italic font-light text-primary">nature</span> meets the city.
+        </h2>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          A stunning 2-bedroom luxury apartment with city views, ample security, free parking and high-speed Wi-Fi.
+          Centrally located, with quick access to Nairobi City Centre and Nairobi National Park.
+        </p>
+        <ul className="grid grid-cols-2 gap-3 text-sm">
+          {["2 Bedrooms", "2 Ensuite Bathrooms", "Modern Kitchen", "Dining for 6", "Sitting Lounge", "Up to 4 Guests"].map((f) => (
+            <li key={f} className="flex items-center gap-2 text-foreground/85">
+              <span className="size-1.5 rounded-full bg-accent" /> {f}
+            </li>
+          ))}
+        </ul>
+        <Button asChild variant="default" size="lg">
+          <Link to="/property">Discover the Stay <ArrowRight className="size-4" /></Link>
+        </Button>
+      </div>
+    </div>
+  </section>
+);
