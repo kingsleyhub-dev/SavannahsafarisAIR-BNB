@@ -31,7 +31,7 @@ const ContactSettings = () => {
 
   useEffect(() => {
     supabase.from("site_settings").select("value").eq("key", "contact").maybeSingle().then(({ data }) => {
-      setVal((data?.value as ContactValue) ?? null);
+      setVal((data?.value as unknown as ContactValue) ?? null);
       setLoading(false);
     });
   }, []);
@@ -43,7 +43,7 @@ const ContactSettings = () => {
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser();
     const { error } = await supabase.from("site_settings")
-      .update({ value: parsed.data, updated_by: user?.id })
+      .update({ value: parsed.data as never, updated_by: user?.id })
       .eq("key", "contact");
     setSaving(false);
     if (error) { toast.error(error.message); return; }

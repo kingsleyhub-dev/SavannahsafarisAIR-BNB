@@ -8,12 +8,12 @@ export const logAudit = async (
 ) => {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
-  await supabase.from("audit_log").insert({
+  await supabase.from("audit_log").insert([{
     actor_id: user.id,
-    actor_email: user.email,
+    actor_email: user.email ?? null,
     action,
     entity_type: entityType,
-    entity_id: entityId,
-    metadata: metadata ?? null,
-  });
+    entity_id: entityId ?? null,
+    metadata: (metadata ?? null) as never,
+  }]);
 };

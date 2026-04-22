@@ -17,7 +17,7 @@ const SiteSettings = () => {
 
   useEffect(() => {
     supabase.from("site_settings").select("value").eq("key", "branding").maybeSingle().then(({ data }) => {
-      setBranding((data?.value as Branding) ?? { name: "", tagline: "" });
+      setBranding((data?.value as unknown as Branding) ?? { name: "", tagline: "" });
       setLoading(false);
     });
   }, []);
@@ -28,7 +28,7 @@ const SiteSettings = () => {
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser();
     const { error } = await supabase.from("site_settings")
-      .update({ value: branding, updated_by: user?.id })
+      .update({ value: branding as never, updated_by: user?.id })
       .eq("key", "branding");
     setSaving(false);
     if (error) { toast.error(error.message); return; }
