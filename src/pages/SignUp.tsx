@@ -36,7 +36,7 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = signUpSchema.safeParse({ fullName, email, password });
-    if (!parsed.success) return toast.error(parsed.error.errors[0].message);
+    if (!parsed.success) return toast.error(parsed.error.issues[0].message);
 
     setBusy(true);
     // Sign up with email + password. Auto-confirm is enabled, so the

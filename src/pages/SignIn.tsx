@@ -34,9 +34,9 @@ const SignIn = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const emailParsed = emailSchema.safeParse(email);
-    if (!emailParsed.success) return toast.error(emailParsed.error.errors[0].message);
+    if (!emailParsed.success) return toast.error(emailParsed.error.issues[0].message);
     const pwParsed = passwordSchema.safeParse(password);
-    if (!pwParsed.success) return toast.error(pwParsed.error.errors[0].message);
+    if (!pwParsed.success) return toast.error(pwParsed.error.issues[0].message);
 
     setBusy(true);
     const { error } = await signIn(emailParsed.data, pwParsed.data);
