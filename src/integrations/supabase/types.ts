@@ -47,6 +47,78 @@ export type Database = {
         }
         Relationships: []
       }
+      bookings: {
+        Row: {
+          add_ons: Json
+          addons_cents: number
+          check_in: string
+          check_out: string
+          cleaning_cents: number
+          created_at: string
+          discount_cents: number
+          discount_percent: number
+          guest_country: string | null
+          guest_email: string
+          guest_name: string
+          guest_phone: string | null
+          guests: number
+          id: string
+          nights: number
+          promo_code: string | null
+          status: string
+          subtotal_cents: number
+          total_cents: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          add_ons?: Json
+          addons_cents?: number
+          check_in: string
+          check_out: string
+          cleaning_cents?: number
+          created_at?: string
+          discount_cents?: number
+          discount_percent?: number
+          guest_country?: string | null
+          guest_email: string
+          guest_name: string
+          guest_phone?: string | null
+          guests?: number
+          id?: string
+          nights: number
+          promo_code?: string | null
+          status?: string
+          subtotal_cents?: number
+          total_cents?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          add_ons?: Json
+          addons_cents?: number
+          check_in?: string
+          check_out?: string
+          cleaning_cents?: number
+          created_at?: string
+          discount_cents?: number
+          discount_percent?: number
+          guest_country?: string | null
+          guest_email?: string
+          guest_name?: string
+          guest_phone?: string | null
+          guests?: number
+          id?: string
+          nights?: number
+          promo_code?: string | null
+          status?: string
+          subtotal_cents?: number
+          total_cents?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       content_fields: {
         Row: {
           created_at: string
@@ -163,6 +235,33 @@ export type Database = {
           sort_order?: number
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
