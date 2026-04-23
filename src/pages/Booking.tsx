@@ -201,10 +201,10 @@ const Booking = () => {
             <Card className="p-6 md:p-8 space-y-6">
               <h3 className="font-display text-2xl font-bold">3. Your details</h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2"><Label>Full name</Label><Input required placeholder="Jane Doe" /></div>
-                <div className="space-y-2"><Label>Email</Label><Input required type="email" placeholder="jane@example.com" /></div>
-                <div className="space-y-2"><Label>Phone</Label><Input required type="tel" placeholder="+254..." /></div>
-                <div className="space-y-2"><Label>Country</Label><Input placeholder="United Kingdom" /></div>
+                <div className="space-y-2"><Label>Full name</Label><Input required placeholder="Jane Doe" value={fullName} onChange={(e) => setFullName(e.target.value)} /></div>
+                <div className="space-y-2"><Label>Email</Label><Input required type="email" placeholder="jane@example.com" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
+                <div className="space-y-2"><Label>Phone</Label><Input required type="tel" placeholder="+254..." value={phone} onChange={(e) => setPhone(e.target.value)} /></div>
+                <div className="space-y-2"><Label>Country</Label><Input placeholder="United Kingdom" value={country} onChange={(e) => setCountry(e.target.value)} /></div>
               </div>
             </Card>
           </form>
@@ -226,8 +226,8 @@ const Booking = () => {
                 <div className="flex justify-between text-lg font-bold border-t border-border pt-4">
                   <span>Total</span><span>${total}</span>
                 </div>
-                <Button onClick={confirm as any} variant="hero" size="lg" className="w-full">
-                  Confirm Booking
+                <Button onClick={confirm as any} variant="hero" size="lg" className="w-full" disabled={saving}>
+                  {saving ? <><Loader2 className="size-4 animate-spin" /> Saving…</> : "Confirm Booking"}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">Secure checkout · 30% deposit option available</p>
               </div>
