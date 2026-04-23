@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { images } from "@/data/site";
 
 type ContentMap = Record<string, string>;
 // key format: `${pageSlug}.${sectionSlug}.${fieldKey}`
@@ -53,9 +54,15 @@ export const SiteContentProvider = ({ children }: { children: ReactNode }) => {
 
 export const useSiteContent = () => useContext(SiteContentCtx);
 
-/** Resolve an image value: passes through http(s)/data URLs and /assets paths.
- *  If the DB value is a /src/assets/... path (legacy), we leave it; build will handle. */
-export const resolveImage = (value: string | undefined, fallback: string) => {
+/** Map legacy /src/assets/<file> paths (stored in seed data) to bundled image URLs.
+ *  Pass http(s), data:, blob:, and Supabase Storage URLs straight through. */
+export const resolveImage = (value: string | undefined, fallback: string): string => {
   if (!value) return fallback;
-  return value;
+  if (/^(https?:|data:|blob:)/i.test(value)) return value;
+  const m = value.match(/\/(?:src\/)?assets\/([^/]+)\.[a-zA-Z0-9]+$/);
+  if (m) {
+    const key = m[1] as keyof typeof images;
+    if (images[key]) return images[key] as string;
+  }
+  return value || fallback;
 };
