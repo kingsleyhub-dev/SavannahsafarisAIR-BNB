@@ -39,7 +39,7 @@ const ContactSettings = () => {
   const save = async () => {
     if (!val) return;
     const parsed = schema.safeParse(val);
-    if (!parsed.success) { toast.error(parsed.error.errors[0].message); return; }
+    if (!parsed.success) { toast.error(parsed.error.issues[0].message); return; }
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser();
     const { error } = await supabase.from("site_settings")

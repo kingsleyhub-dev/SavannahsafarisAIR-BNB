@@ -30,7 +30,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const emailParsed = emailSchema.safeParse(email);
-    if (!emailParsed.success) { toast.error(emailParsed.error.errors[0].message); return; }
+    if (!emailParsed.success) { toast.error(emailParsed.error.issues[0].message); return; }
 
     setBusy(true);
     try {
@@ -43,7 +43,7 @@ const AdminLogin = () => {
       }
 
       const pwParsed = passwordSchema.safeParse(password);
-      if (!pwParsed.success) { toast.error(pwParsed.error.errors[0].message); return; }
+      if (!pwParsed.success) { toast.error(pwParsed.error.issues[0].message); return; }
 
       if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
