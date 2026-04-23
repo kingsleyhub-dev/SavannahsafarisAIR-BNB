@@ -13,6 +13,7 @@ import Location from "./pages/Location.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import { SiteLayout } from "./components/layout/SiteLayout.tsx";
+import { SiteContentProvider } from "./hooks/useSiteContent.tsx";
 
 // Admin
 import { AuthProvider } from "./admin/auth/AuthProvider.tsx";
@@ -36,6 +37,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+          <SiteContentProvider>
           <Routes>
             {/* Public site */}
             <Route element={<SiteLayout />}>
@@ -66,6 +68,7 @@ const App = () => (
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </SiteContentProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
